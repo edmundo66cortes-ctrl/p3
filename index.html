@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P3 - La Molécula del Futuro</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #6b8cbc;
+            --accent: #ff9e44;
+            --light: #f5f7fa;
+            --dark: #2c3e50;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(74, 111, 165, 0.8), rgba(74, 111, 165, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234a6fa5"/><path d="M0 0L100 100M100 0L0 100" stroke="%236b8cbc" stroke-width="1"/></svg>');
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #ff8c21;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        /* About */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .molecule {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--secondary) 0%, var(--primary) 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 5rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .molecule::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .molecule span {
+            z-index: 1;
+        }
+        
+        /* Properties */
+        .properties {
+            background-color: #eef2f7;
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .property-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .property-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .property-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Benefits */
+        .benefits-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .benefit-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Sources */
+        .sources-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .source-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .source-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .source-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .molecule {
+                width: 250px;
+                height: 250px;
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">P<span>3</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">Descripción</a></li>
+                    <li><a href="#properties">Propiedades</a></li>
+                    <li><a href="#benefits">Beneficios</a></li>
+                    <li><a href="#sources">Fuentes</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>P3: La Molécula del Futuro</h1>
+            <p>Descubre la revolucionaria molécula P3, un compuesto bioactivo con propiedades únicas que promete transformar la salud y el bienestar humano.</p>
+            <a href="#about" class="btn">Descubrir más</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>¿Qué es la P3?</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>La P3 es una molécula bioactiva descubierta recientemente que combina propiedades de vitaminas esenciales con capacidades antioxidantes avanzadas. Su estructura molecular única le permite interactuar con múltiples sistemas del cuerpo humano de manera sinérgica.</p>
+                    <p>Químicamente, la P3 es un compuesto polifenólico con una estructura tricíclica que contiene grupos funcionales hidroxilo y ceto, lo que le confiere una alta reactividad y capacidad de donación de electrones.</p>
+                    <p>Esta molécula fue aislada por primera vez en 2023 a partir de una rara especie de planta descubierta en la selva amazónica, y desde entonces ha sido objeto de intensa investigación por sus propiedades únicas.</p>
+                </div>
+                <div class="about-image">
+                    <div class="molecule">
+                        <span>P3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="properties">
+        <div class="container">
+            <div class="section-title">
+                <h2>Propiedades de la P3</h2>
+            </div>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-icon">🧬</div>
+                    <h3>Estructura Molecular Única</h3>
+                    <p>La P3 presenta una configuración tridimensional que le permite interactuar con múltiples receptores celulares simultáneamente, potenciando sus efectos biológicos.</p>
+                </div>
+                <div class="property-card">
+                    <div class="property-icon">⚡</div>
+                    <h3>Alta Biodisponibilidad</h3>
+                    <p>Gracias a su pequeño tamaño molecular y propiedades lipofílicas, la P3 es absorbida eficientemente por el organismo, alcanzando concentraciones terapéuticas rápidamente.</p>
+                </div>
+                <div class="property-card">
+                    <div class="property-icon">🛡️</div>
+                    <h3>Potente Antioxidante</h3>
+                    <p>Con un valor ORAC (Capacidad de Absorción de Radicales Oxígeno) de 15,000 μmol TE/g, la P3 supera a la mayoría de antioxidantes conocidos.</p>
+                </div>
+                <div class="property-card">
+                    <div class="property-icon">🔬</div>
+                    <h3>Estabilidad Térmica</h3>
+                    <p>A diferencia de muchas vitaminas, la P3 mantiene su integridad estructural incluso a temperaturas elevadas, lo que facilita su procesamiento y almacenamiento.</p>
+                </div>
+                <div class="property-card">
+                    <div class="property-icon">💧</div>
+                    <h3>Solubilidad Dual</h3>
+                    <p>La P3 es soluble tanto en agua como en lípidos, permitiendo su distribución uniforme por todos los tejidos del organismo.</p>
+                </div>
+                <div class="property-card">
+                    <div class="property-icon">⏱️</div>
+                    <h3>Semivida Prolongada</h3>
+                    <p>Con una semivida de 12 horas, la P3 proporciona efectos sostenidos con una sola dosis diaria, mejorando la adherencia al tratamiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2>Beneficios para la Salud</h2>
+            </div>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🧠</div>
+                    <div>
+                        <h3>Salud Cognitiva</h3>
+                        <p>La P3 cruza la barrera hematoencefálica y promueve la neurogénesis, mejorando la memoria, la concentración y la agilidad mental. Estudios preliminares sugieren que podría reducir el riesgo de enfermedades neurodegenerativas.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">❤️</div>
+                    <div>
+                        <h3>Salud Cardiovascular</h3>
+                        <p>Regula los niveles de colesterol LDL y promueve la flexibilidad arterial, reduciendo el riesgo de aterosclerosis. Además, tiene efectos vasodilatadores que ayudan a mantener una presión arterial saludable.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔋</div>
+                    <div>
+                        <h3>Energía y Metabolismo</h3>
+                        <p>La P3 optimiza la producción de ATP en las mitocondrias, aumentando los niveles de energía y mejorando el metabolismo de lípidos y carbohidratos. Esto puede contribuir a un peso corporal saludable.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛡️</div>
+                    <div>
+                        <h3>Sistema Inmunológico</h3>
+                        <p>Modula la respuesta inmunitaria, fortaleciendo las defensas contra patógenos mientras reduce las reacciones autoinmunes excesivas. También promueve la producción de células T reguladoras.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">👁️</div>
+                    <div>
+                        <h3>Salud Ocular</h3>
+                        <p>Se acumula selectivamente en los tejidos oculares, protegiendo contra el daño oxidativo y reduciendo el riesgo de degeneración macular relacionada con la edad y cataratas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources Section -->
+    <section id="sources" class="sources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fuentes de P3</h2>
+            </div>
+            <div class="sources-content">
+                <div class="source-item">
+                    <div class="source-icon">🌿</div>
+                    <h3>Planta Amazónica</h3>
+                    <p>Fuente natural original con la concentración más alta de P3.</p>
+                </div>
+                <div class="source-item">
+                    <div class="source-icon">🍄</div>
+                    <h3>Hongos Especiales</h3>
+                    <p>Ciertas especies de hongos contienen cantidades significativas de P3.</p>
+                </div>
+                <div class="source-item">
+                    <div class="source-icon">🥦</div>
+                    <h3>Vegetales Verdes</h3>
+                    <p>Algunas verduras de hoja verde contienen precursores de P3.</p>
+                </div>
+                <div class="source-item">
+                    <div class="source-icon">💊</div>
+                    <h3>Suplementos</h3>
+                    <p>Disponible en forma de cápsulas con P3 purificada y estandarizada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">P<span>3</span></div>
+                <ul class="footer-links">
+                    <li><a href="#about">Descripción</a></li>
+                    <li><a href="#properties">Propiedades</a></li>
+                    <li><a href="#benefits">Beneficios</a></li>
+                    <li><a href="#sources">Fuentes</a></li>
+                </ul>
+                <p class="copyright">© 2023 P3 Molecular. Todos los derechos reservados. Esta es una página ficticia creada con fines educativos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
